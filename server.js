@@ -11,6 +11,12 @@ app.use(express.json());
 
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/products", require("./routes/productRoutes"));
+app.use("/api/cart", require("./routes/cartRoutes"));
+
+app.get("/", (req, res) => {
+  res.send("FusionFabrik API Running 🚀");
+});
+
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
@@ -22,7 +28,3 @@ mongoose.connect(process.env.MONGO_URI)
 .catch(err => {
   console.log("DB Connection Error:", err);
 });
-
-app.use("/api/users", require("./routes/userRoutes"));
-app.use("/api/products", require("./routes/productRoutes"));
-app.use("/api/cart", require("./routes/cartRoutes"));
