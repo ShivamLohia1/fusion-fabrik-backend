@@ -8,15 +8,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Homepage route (fix for Cannot GET /)
+app.get("/", (req, res) => {
+  res.send("FusionFabrik Backend API Running 🚀");
+});
 
+// API Routes
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/cart", require("./routes/cartRoutes"));
-
-app.get("/", (req, res) => {
-  res.send("FusionFabrik API Running 🚀");
-});
-
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
