@@ -23,4 +23,6 @@ mongoose.connect(process.env.MONGO_URI)
   console.log("DB Connection Error:", err);
 });
 
+app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/cart", require("./routes/cartRoutes"));
