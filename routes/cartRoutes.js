@@ -12,4 +12,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+// ADD item to cart
+router.post("/", async (req, res) => {
+  try {
+    const newItem = new Cart(req.body);
+    const savedItem = await newItem.save();
+    res.status(201).json(savedItem);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
